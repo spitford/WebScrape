@@ -17,8 +17,7 @@ def create():
                 DEFENSE         INT     NOT NULL,
                 SATTACK         INT     NOT NULL,
                 SDEFENSE        INT     NOT NULL,
-                SPEED           INT     NOT NULL,
-                GENDER          REAL    NOT NULL);''')
+                SPEED           INT     NOT NULL);''')
 
     print ("Table created successfully")
 

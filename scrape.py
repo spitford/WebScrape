@@ -3,8 +3,21 @@
 # import libraries
 import sqlite3
 import urllib2
+import os.path
 from bs4 import BeautifulSoup
 
+import DBCreate
+
+if not os.path.exists('pokemon.db'):
+    print "Creating database..."
+    DBCreate.create()
+else:
+    print "Database exists..."
+
+db = sqlite3.connect('pokemon.db')
+print "Opened database sucessfully for write"
+
+dex = 0
 count = 0
 name = ''
 type1 = ''
@@ -54,4 +67,11 @@ for tag in name_box:
         sdefense = data
     if count % 11 == 0:
         speed = data
-        print name, type1, type2, hp, attack, defense, sattack, sdefense, speed
+        dex += 1
+        # print name, type1, type2, hp, attack, defense, sattack, sdefense, speed
+        db.execute("INSERT INTO MASTER (ID,NAME,TYPE1,TYPE2,HP,ATTACK,DEFENSE,SATTACK,SDEFENSE,SPEED) \
+                               VALUES (?,?,?,?,?,?,?,?,?,?);",(dex,name,type1,type2,hp,attack,defense,sattack,sdefense,speed))
+
+print name + " was the final pokemon added to the database"
+db.commit()
+db.close()
