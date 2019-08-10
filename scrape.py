@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 
 count = 0
 name = ''
+type1 = ''
+type2 = ''
 hp = 0
 attack = 0
 defense = 0
@@ -29,6 +31,15 @@ for tag in name_box:
     data = tag.text.strip()
     if count % 11 == 3:
         name = data
+
+    if count % 11 == 4:
+        types = str(tag).split(" ")
+        type1 = types[5][22:types[5].find(".")].capitalize()
+        try:
+            type2 = types[9][22:types[9].find(".")].capitalize()
+        except:
+            type2 = ""
+
     if count % 11 == 6:
         hp = data
     if count % 11 == 7:
@@ -41,4 +52,4 @@ for tag in name_box:
         sdefense = data
     if count % 11 == 0:
         speed = data
-        print name, hp, attack, defense, sattack, sdefense, speed
+        print name, type1, type2, hp, attack, defense, sattack, sdefense, speed
