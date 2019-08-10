@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # import libraries
 import sqlite3
 import urllib2
