@@ -9,13 +9,13 @@ from bs4 import BeautifulSoup
 import DBCreate
 
 if not os.path.exists('pokemon.db'):
-    print "Creating database..."
+    print ("Creating database...")
     DBCreate.create()
 else:
-    print "Database exists..."
+    print ("Database exists...")
 
 db = sqlite3.connect('pokemon.db')
-print "Opened database sucessfully for write"
+print ("Opened database sucessfully for write")
 
 dex = 0
 count = 0
@@ -72,6 +72,6 @@ for tag in name_box:
         db.execute("INSERT INTO MASTER (ID,NAME,TYPE1,TYPE2,HP,ATTACK,DEFENSE,SATTACK,SDEFENSE,SPEED) \
                                VALUES (?,?,?,?,?,?,?,?,?,?);",(dex,name,type1,type2,hp,attack,defense,sattack,sdefense,speed))
 
-print name + " was the final pokemon added to the database"
+print (name + " was the final pokemon added to the database")
 db.commit()
 db.close()
