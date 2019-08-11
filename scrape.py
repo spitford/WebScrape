@@ -68,10 +68,13 @@ for tag in name_box:
     if count % 11 == 0:
         speed = data
         dex += 1
-        # print name, type1, type2, hp, attack, defense, sattack, sdefense, speed
-        db.execute("INSERT INTO MASTER (ID,NAME,TYPE1,TYPE2,HP,ATTACK,DEFENSE,SATTACK,SDEFENSE,SPEED) \
-                               VALUES (?,?,?,?,?,?,?,?,?,?);",(dex,name,type1,type2,hp,attack,defense,sattack,sdefense,speed))
 
+        # print name, type1, type2, hp, attack, defense, sattack, sdefense, speed
+        try:
+            db.execute("INSERT INTO MASTER (ID,NAME,TYPE1,TYPE2,HP,ATTACK,DEFENSE,SATTACK,SDEFENSE,SPEED) \
+                               VALUES (?,?,?,?,?,?,?,?,?,?);",(dex,name,type1,type2,hp,attack,defense,sattack,sdefense,speed))
+        except:
+            print ("Pokemon " + name + " already added to database")
 print (name + " was the final pokemon added to the database")
 db.commit()
 db.close()
